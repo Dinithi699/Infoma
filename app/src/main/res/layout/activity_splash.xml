@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:padding="32dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INFORMA"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Scholars' Voice"
+        android:textSize="16sp"
+        android:textColor="@color/gray_600"
+        android:layout_marginBottom="48dp" />
+
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="News Logo"
+        android:src="@drawable/logo_news" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:lineSpacingExtra="4dp"
+        android:text="News and Insights from the\nAcademic World"
+        android:textAlignment="center"
+        android:textColor="@color/gray_500"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

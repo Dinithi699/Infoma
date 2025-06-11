@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">INFORMA</string>
+
+    <!-- Splash Screen -->
+    <string name="app_tagline">News and Insights from the Academic World</string>
+
+    <!-- Authentication -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up_button">SIGN UP</string>
+    <string name="username">USERNAME</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
+    <string name="confirm_password">CONFIRM PASSWORD</string>
+    <string name="dont_have_account">DON\'T YOU HAVE AN ACCOUNT?</string>
+    <string name="have_account">HAVE AN ACCOUNT?</string>
+    <string name="sign_up_link">SIGN UP</string>
+    <string name="login_link">LOGIN</string>
+
+    <!-- Navigation -->
+    <string name="nav_news">News</string>
+    <string name="nav_user">User</string>
+
+    <!-- News Screen -->
+    <string name="sri_lanka_news_title">Sri Lanka Stuns India with Last-Over Win in Thrilling T20 Chase</string>
+    <string name="news_date">May 3, 2025</string>
+    <string name="news_description">In an electrifying T20 encounter at the R. Premadasa Stadium, Sri Lanka defeated India by 3 wickets in the final over of a nail-biting match.</string>
+
+    <!-- User Profile -->
+    <string name="dev_information">Dev Information</string>
+    <string name="user_information">User Information</string>
+    <string name="edit_info">EDIT INFO</string>
+    <string name="sign_out">SIGN OUT</string>
+    <string name="exit">EXIT</string>
+    <string name="name">Name :</string>
+    <string name="student_no">Student no. :</string>
+    <string name="personal_statement">Personal statement :</string>
+    <string name="release_version">Release version :</string>
+    <string name="username_label">Username :</string>
+    <string name="email_label">Email :</string>
+
+    <!-- Edit Profile -->
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="do_you_want_to_sign_out">DO YOU WANT TO SIGN OUT ?</string>
+
+    <!-- Validation Messages -->
+    <string name="empty_fields">Please fill in all fields</string>
+    <string name="passwords_dont_match">Passwords don\'t match</string>
+    <string name="invalid_credentials">Invalid username or password</string>
+    <string name="registration_successful">Registration successful!</string>
+    <string name="user_exists">User already exists</string>
+
+    <!-- General -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="try_again">Try Again</string>
+    <string name="no_internet">No internet connection</string>
+
+    <!-- Fragment Labels -->
+    <string name="first_fragment_label">News</string>
+    <string name="second_fragment_label">User Info</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Navigation Header -->
+    <string name="nav_header_title">News Portal</string>
+    <string name="nav_header_subtitle">Stay Updated with Latest News</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_all_news">All News</string>
+    <string name="nav_sports">Sports</string>
+    <string name="nav_technology">Technology</string>
+    <string name="nav_education">Education</string>
+
+    <!-- Drawer Menu -->
+    <string name="nav_user_info">User Information</string>
+    <string name="nav_dev_info">Developer Information</string>
+
+    <!-- Fragment Titles -->
+    <string name="all_news_title">Latest News</string>
+    <string name="sports_title">Sports News</string>
+    <string name="technology_title">Technology News</string>
+    <string name="education_title">Education News</string>
+    <string name="user_info_title">User Profile</string>
+    <string name="dev_info_title">About Developer</string>
+
+    <!-- User Information -->
+
+
+    <string name="phone_label">Phone:</string>
+    <string name="location_label">Location:</string>
+
+
+
+    <!-- Developer Information -->
+    <string name="dev_name">Developer: John Doe</string>
+    <string name="dev_email">Email: john.doe@example.com</string>
+    <string name="dev_website">Website: www.johndoe.dev</string>
+    <string name="app_version">Version: 1.0.0</string>
+    <string name="contact_dev">Contact Developer</string>
+    <string name="rate_app">Rate This App</string>
+
+    <!-- News Categories -->
+    <string name="category_general">General</string>
+    <string name="category_sports">Sports</string>
+    <string name="category_technology">Technology</string>
+    <string name="category_education">Education</string>
+    <string name="category_business">Business</string>
+    <string name="category_health">Health</string>
+    <string name="category_entertainment">Entertainment</string>
+
+    <!-- Time Labels -->
+    <string name="time_now">Just now</string>
+    <string name="time_minutes_ago">%d minutes ago</string>
+    <string name="time_hours_ago">%d hours ago</string>
+    <string name="time_days_ago">%d days ago</string>
+
+    <!-- Content Descriptions -->
+    <string name="news_image_desc">News article image</string>
+    <string name="profile_image_desc">Profile image</string>
+    <string name="menu_icon_desc">Menu icon</string>
+
+    <!-- Error Messages -->
+    <string name="error_loading_news">Error loading news. Please try again.</string>
+
+    <string name="retry">Retry</string>
+
+    <!-- Loading -->
+
+    <string name="loading_more">Loading more news...</string>
+
+    <!-- Actions -->
+    <string name="share">Share</string>
+    <string name="save">Save</string>
+    <string name="read_more">Read More</string>
+    <string name="refresh">Refresh</string>
+</resources>

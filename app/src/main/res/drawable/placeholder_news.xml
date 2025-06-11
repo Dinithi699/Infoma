@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background rectangle -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E0E0E0"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- Image placeholder -->
+    <item
+        android:width="200dp"
+        android:height="120dp"
+        android:gravity="center">
+        <shape android:shape="rectangle">
+            <solid android:color="#BDBDBD"/>
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+
+    <!-- Center circle (image icon) -->
+    <item android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="#9E9E9E"/>
+            <size
+                android:width="40dp"
+                android:height="40dp"/>
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "217946793799",
+    "project_id": "informa-f817f",
+    "storage_bucket": "informa-f817f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217946793799:android:c7dbd7aab79aac3396ce62",
+        "android_client_info": {
+          "package_name": "com.example.myapplication2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTQdGKiD1I1xhsvkRbeLHZphOI_imrTAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

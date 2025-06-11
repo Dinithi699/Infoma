@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_all_news"
+        android:icon="@drawable/ic_news"
+        android:title="All News" />
+    <item
+        android:id="@+id/nav_sports"
+        android:icon="@drawable/ic_sports"
+        android:title="Sports" />
+    <item
+        android:id="@+id/nav_technology"
+        android:icon="@drawable/ic_technology"
+        android:title="Technology" />
+    <item
+        android:id="@+id/nav_education"
+        android:icon="@drawable/ic_education"
+        android:title="Education" />
+</menu>
