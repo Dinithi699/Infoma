@@ -8,36 +8,37 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="INFORMA"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold" />
 
+
     <TextView
         android:layout_width="154dp"
         android:layout_height="50dp"
         android:layout_marginBottom="48dp"
+        android:gravity="center"
         android:text="The Scholars' Voice"
         android:textColor="@color/gray_600"
         android:textSize="16sp" />
 
-
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="178dp"
+        android:layout_width="170dp"
         android:layout_height="204dp"
-        android:layout_marginTop="60dp"
+
         android:contentDescription="News Logo"
-        android:src="@drawable/logo_news" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="111dp"
+        android:layout_height="57dp"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:lineSpacingExtra="4dp"
+        android:lineSpacingExtra="6dp"
         android:text="News and Insights from the\nAcademic World"
         android:textAlignment="center"
         android:textColor="@color/gray_500"
