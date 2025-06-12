@@ -101,7 +101,8 @@
 
 
     <!-- Developer Information -->
-    <string name="dev_name">Developer: John Doe</string>
+    <string name="dev_name">Dinithi Wimansala</string>
+    <string name="dev_studentnumber">Developer: 2020T00895</string>
     <string name="dev_email">Email: john.doe@example.com</string>
     <string name="dev_website">Website: www.johndoe.dev</string>
     <string name="app_version">Version: 1.0.0</string>

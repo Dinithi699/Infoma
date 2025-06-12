@@ -30,18 +30,18 @@ public class DevInfoFragment extends Fragment {
         Button exitButton = view.findViewById(R.id.exit_button);
 
         // Set developer information
-        if (nameField != null) {
-            nameField.setText("John Doe");
-        }
-        if (studentNoField != null) {
-            studentNoField.setText("STU001234");
-        }
-        if (personalStatementField != null) {
-            personalStatementField.setText("Passionate mobile app developer with expertise in Android development. Focused on creating user-friendly applications with modern design principles.");
-        }
-        if (releaseVersionField != null) {
-            releaseVersionField.setText("Version 1.0.0");
-        }
+//        if (nameField != null) {
+//            nameField.setText("John Doe");
+//        }
+//        if (studentNoField != null) {
+//            studentNoField.setText("STU001234");
+//        }
+//        if (personalStatementField != null) {
+//            personalStatementField.setText("Passionate mobile app developer with expertise in Android development. Focused on creating user-friendly applications with modern design principles.");
+//        }
+//        if (releaseVersionField != null) {
+//            releaseVersionField.setText("Version 1.0.0");
+//        }
 
         // Set exit button listener
         if (exitButton != null) {

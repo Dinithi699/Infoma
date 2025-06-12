@@ -81,16 +81,16 @@ public class FirstFragment extends Fragment {
 
         news.add(new NewsItem(
                 "Economic Market Updates",
-                "Stock markets show positive trends as new policies take effect across major economies. Investors are responding favorably to recent government initiatives and corporate earnings reports.",
-                "Business",
+                "Highlights of Memorandum of Understanding Signing Ceremony (UoC and RCS2 Technologies (Pvt) Ltd)",
+                "Education",
                 "8 hours ago",
                 R.drawable.ic_news
         ));
 
         news.add(new NewsItem(
                 "Climate Change Initiative",
-                "New environmental protection measures are being implemented globally. Countries are working together to reduce carbon emissions and promote sustainable energy solutions.",
-                "Environment",
+                "ANNUAL RESEARCH SYMPOSIUM - 2025",
+                "Education",
                 "12 hours ago",
                 R.drawable.ic_news
         ));

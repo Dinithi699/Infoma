@@ -15,11 +15,13 @@
             android:id="@+id/dev_avatar"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/profile_circle_bg"
+            android:layout_marginTop="56dp"
+            android:background="@drawable/circle_profile_background"
             android:padding="8dp"
-            android:src="@drawable/ic_developer"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dev_dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="16dp"
-                    android:text="John Doe"
+                    android:text="@string/dev_name"
                     android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -82,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="16dp"
-                    android:text="STU001234"
+                    android:text="2020T00895"
                     android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -132,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/button_bg"
+            android:background="@drawable/nav_header_bg"
             android:text="Back to News"
             android:textColor="@android:color/white"
             android:textSize="16sp"

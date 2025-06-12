@@ -12,6 +12,25 @@
         android:orientation="vertical"
         android:padding="@dimen/fragment_padding">
 
+        <!-- Back Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/spacing_medium">
+
+            <Button
+                android:id="@+id/back_button"
+                style="@style/Button.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:text="Back to Home"
+                android:textSize="14sp"
+                android:padding="12dp" />
+
+        </LinearLayout>
+
         <androidx.cardview.widget.CardView
             style="@style/CardView.News"
             android:layout_width="match_parent"
@@ -26,83 +45,86 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
-                    style="@style/ProfileImage"
+                    android:layout_width="134dp"
+                    android:layout_height="134dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/spacing_medium"
-                    android:src="@drawable/ic_person" />
+                    android:src="@drawable/ic_person"
+                    android:background="@drawable/profile_circle_bg"
+                    android:contentDescription="Profile Image" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/username_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:layout_marginBottom="@dimen/spacing_tiny" />
+                    android:textAppearance="@style/TextAppearance.Subtitle" />
 
                 <TextView
                     android:id="@+id/username_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:text="John Doe"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    android:layout_marginBottom="@dimen/spacing_medium" />
+                    android:textAppearance="@style/TextAppearance.Body" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/email_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:layout_marginBottom="@dimen/spacing_tiny" />
+                    android:textAppearance="@style/TextAppearance.Subtitle" />
 
                 <TextView
                     android:id="@+id/email_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:text="john.doe@example.com"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    android:layout_marginBottom="@dimen/spacing_medium" />
+                    android:textAppearance="@style/TextAppearance.Body" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/phone_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:layout_marginBottom="@dimen/spacing_tiny" />
+                    android:textAppearance="@style/TextAppearance.Subtitle" />
 
                 <TextView
                     android:id="@+id/phone_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:text="+1 234 567 8900"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    android:layout_marginBottom="@dimen/spacing_medium" />
+                    android:textAppearance="@style/TextAppearance.Body" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/location_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:layout_marginBottom="@dimen/spacing_tiny" />
+                    android:textAppearance="@style/TextAppearance.Subtitle" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_large"
                     android:text="New York, USA"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    android:layout_marginBottom="@dimen/spacing_large" />
+                    android:textAppearance="@style/TextAppearance.Body" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/edit_info_button"
                         style="@style/Button.Primary"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_weight="1"
                         android:text="@string/edit_info" />
 
                     <Button
@@ -110,11 +132,36 @@
                         style="@style/Button.Secondary"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
                         android:text="@string/sign_out" />
 
                 </LinearLayout>
+
+                <!-- Delete Account Section -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:background="#E0E0E0" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:text="Danger Zone"
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="#D32F2F" />
+
+                <Button
+                    android:id="@+id/delete_account_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Account"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#D32F2F"
+                    android:layout_marginTop="@dimen/spacing_small" />
 
             </LinearLayout>
 
