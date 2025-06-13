@@ -103,7 +103,12 @@ public class UserInfoFragment extends Fragment {
         }
     }
 
-    private void showDeleteAccountDialog() {
+
+
+
+
+
+private void showDeleteAccountDialog() {
         if (getContext() == null) return;
 
         try {

@@ -1,11 +1,14 @@
 package com.example.myapplication2;
 
-public class NewsItem {
+import java.io.Serializable;
+
+public class NewsItem implements Serializable {
     private String title;
     private String description;
     private String category;
     private String timeAgo;
     private int imageResource;
+    private boolean isRead;
 
     public NewsItem(String title, String description, String category, String timeAgo, int imageResource) {
         this.title = title;
@@ -13,6 +16,7 @@ public class NewsItem {
         this.category = category;
         this.timeAgo = timeAgo;
         this.imageResource = imageResource;
+        this.isRead = false; // Default to unread
     }
 
     // Getters
@@ -36,6 +40,10 @@ public class NewsItem {
         return imageResource;
     }
 
+    public boolean isRead() {
+        return isRead;
+    }
+
     // Setters
     public void setTitle(String title) {
         this.title = title;
@@ -55,5 +63,9 @@ public class NewsItem {
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
+    }
+
+    public void setRead(boolean read) {
+        this.isRead = read;
     }
 }

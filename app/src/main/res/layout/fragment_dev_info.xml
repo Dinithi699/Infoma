@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/nav_header_bg"
+            android:background="@drawable/button_bg"
             android:text="Back to News"
             android:textColor="@android:color/white"
             android:textSize="16sp"

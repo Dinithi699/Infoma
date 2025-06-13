@@ -15,8 +15,6 @@
         android:padding="16dp"
         android:src="@drawable/news_head_logo" />
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +52,16 @@
         android:textSize="16sp"
         android:inputType="textPassword"
         android:layout_marginBottom="32dp" />
+
+    <!-- Progress Bar - Added here -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateTint="@color/teal_700"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btn_login"

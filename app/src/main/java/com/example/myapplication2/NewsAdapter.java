@@ -12,9 +12,19 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
     private List<NewsItem> newsList;
+    private OnNewsItemClickListener onNewsItemClickListener;
+
+    // Interface for handling item clicks
+    public interface OnNewsItemClickListener {
+        void onNewsItemClick(NewsItem newsItem);
+    }
 
     public NewsAdapter(List<NewsItem> newsList) {
         this.newsList = newsList;
+    }
+
+    public void setOnNewsItemClickListener(OnNewsItemClickListener listener) {
+        this.onNewsItemClickListener = listener;
     }
 
     @NonNull
@@ -40,7 +50,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         return newsList.size();
     }
 
-    public static class NewsViewHolder extends RecyclerView.ViewHolder {
+    public class NewsViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView descriptionTextView;
         TextView categoryTextView;
@@ -54,6 +64,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             categoryTextView = itemView.findViewById(R.id.news_category);
             timeTextView = itemView.findViewById(R.id.news_time);
             newsImageView = itemView.findViewById(R.id.news_image);
+
+            // Set click listener for the entire item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && onNewsItemClickListener != null) {
+                        onNewsItemClickListener.onNewsItemClick(newsList.get(position));
+                    }
+                }
+            });
         }
     }
 }

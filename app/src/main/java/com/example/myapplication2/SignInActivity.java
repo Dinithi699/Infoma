@@ -1,92 +1,3 @@
-//package com.example.myapplication2;
-//
-//import android.content.Intent;
-//import android.content.SharedPreferences;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.EditText;
-//import android.widget.TextView;
-//import android.widget.Toast;
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//public class SignInActivity extends AppCompatActivity {
-//
-//    private EditText etUsername, etPassword;
-//    private Button btnLogin;
-//    private TextView tvSignup;
-//    private SharedPreferences sharedPreferences;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_signin);
-//
-//        // Hide action bar
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().hide();
-//        }
-//
-//        initViews();
-//        setupClickListeners();
-//
-//        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-//    }
-//
-//    private void initViews() {
-//        etUsername = findViewById(R.id.et_username);
-//        etPassword = findViewById(R.id.et_password);
-//        btnLogin = findViewById(R.id.btn_login);
-//        tvSignup = findViewById(R.id.tv_signup);
-//    }
-//
-//    private void setupClickListeners() {
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                performLogin();
-//            }
-//        });
-//
-//        tvSignup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//
-//    private void performLogin() {
-//        String username = etUsername.getText().toString().trim();
-//        String password = etPassword.getText().toString().trim();
-//
-//        if (username.isEmpty() || password.isEmpty()) {
-//            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        // Simple validation - in real app, you'd validate against server/database
-//        if (username.length() >= 3 && password.length() >= 6) {
-//            // Save user data
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.putString("username", username);
-//            editor.putString("email", username + "@example.com");
-//            editor.putBoolean("isLoggedIn", true);
-//            editor.apply();
-//
-//            Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
-//
-//            // Navigate to main activity
-//            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        } else {
-//            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//}
-
 package com.example.myapplication2;
 
 import android.content.Context;
@@ -96,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -108,6 +20,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private TextView tvSignup;
+    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
 
@@ -129,10 +42,11 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        etEmail = findViewById(R.id.et_email); // Assuming you're using email here
+        etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         tvSignup = findViewById(R.id.tv_signup);
+        progressBar = findViewById(R.id.progress_bar); // Add this to your layout
     }
 
     private void setupClickListeners() {
@@ -160,8 +74,14 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
 
+        // Show loading state
+        setLoadingState(true);
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
+                    // Hide loading state
+                    setLoadingState(false);
+
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -197,5 +117,29 @@ public class SignInActivity extends AppCompatActivity {
                                 task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private void setLoadingState(boolean isLoading) {
+        if (isLoading) {
+            // Show progress bar and disable button
+            progressBar.setVisibility(View.VISIBLE);
+            btnLogin.setEnabled(false);
+            btnLogin.setText("SIGNING IN...");
+
+            // Optionally disable input fields
+            etEmail.setEnabled(false);
+            etPassword.setEnabled(false);
+            tvSignup.setEnabled(false);
+        } else {
+            // Hide progress bar and enable button
+            progressBar.setVisibility(View.GONE);
+            btnLogin.setEnabled(true);
+            btnLogin.setText("LOGIN");
+
+            // Re-enable input fields
+            etEmail.setEnabled(true);
+            etPassword.setEnabled(true);
+            tvSignup.setEnabled(true);
+        }
     }
 }
