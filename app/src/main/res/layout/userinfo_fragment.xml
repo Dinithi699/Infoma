@@ -49,7 +49,7 @@
                     android:layout_height="134dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/spacing_medium"
-                    android:src="@drawable/ic_person"
+                    android:src="@drawable/user_icon"
                     android:background="@drawable/profile_circle_bg"
                     android:contentDescription="Profile Image" />
 
@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_medium"
-                    android:text="+1 234 567 8900"
+                    android:text="0776789087"
                     android:textAppearance="@style/TextAppearance.Body" />
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_large"
-                    android:text="New York, USA"
+                    android:text="Sri Lanka"
                     android:textAppearance="@style/TextAppearance.Body" />
 
                 <LinearLayout
