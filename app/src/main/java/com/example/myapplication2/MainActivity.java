@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -275,6 +277,30 @@ protected void onCreate(Bundle savedInstanceState) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
+        }
+    }
+
+    // Add this method to your MainActivity.java class
+
+    // Method to navigate to SignInActivity (can be called from fragments)
+    public void navigateToSignIn() {
+        try {
+            // Sign out if not already signed out
+            if (mAuth != null) {
+                mAuth.signOut();
+            }
+
+            // Clear SharedPreferences
+            clearUserPreferences();
+
+            // Navigate to SignInActivity
+            Intent intent = new Intent(this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error navigating to sign in: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
     // Add this new method to clear user preferences

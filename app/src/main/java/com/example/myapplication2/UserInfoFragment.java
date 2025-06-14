@@ -111,48 +111,6 @@ public class UserInfoFragment extends Fragment {
 
 
 
-private void showDeleteAccountDialog() {
-        if (getContext() == null) return;
-
-        try {
-            // Create warning dialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("⚠️ Delete Account")
-                    .setMessage("Are you sure you want to delete your account?\n\n" +
-                            "This action is PERMANENT and cannot be undone. All your data will be lost forever.\n\n" +
-                            "Please enter your current password to confirm:")
-                    .setCancelable(true);
-
-            // Create password input layout
-            LinearLayout dialogLayout = new LinearLayout(getContext());
-            dialogLayout.setOrientation(LinearLayout.VERTICAL);
-            dialogLayout.setPadding(50, 40, 50, 10);
-
-            EditText passwordEditText = new EditText(getContext());
-            passwordEditText.setHint("Enter your current password");
-            passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordEditText.setPadding(20, 20, 20, 20);
-
-            dialogLayout.addView(passwordEditText);
-
-            builder.setView(dialogLayout)
-                    .setPositiveButton("DELETE ACCOUNT", (dialog, which) -> {
-                        String password = passwordEditText.getText().toString();
-                        if (password.isEmpty()) {
-                            Toast.makeText(getContext(), "Password is required to delete account", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        deleteUserAccount(password);
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                    .show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "Error showing delete account dialog", e);
-            Toast.makeText(getContext(), "Error showing delete dialog: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void deleteUserAccount(String password) {
         // Refresh current user before deletion
         refreshCurrentUser();
@@ -178,15 +136,33 @@ private void showDeleteAccountDialog() {
                         currentUser.delete()
                                 .addOnSuccessListener(deleteVoid -> {
                                     Log.d(TAG, "Account deleted successfully");
+
+                                    // Clear SharedPreferences
+                                    clearUserPreferences();
+
                                     Toast.makeText(getContext(), "Account deleted successfully", Toast.LENGTH_LONG).show();
 
-                                    // Sign out and navigate to home
+                                    // Sign out and navigate to SignInActivity
                                     if (mAuth != null) {
                                         mAuth.signOut();
                                     }
 
-                                    if (getActivity() instanceof MainActivity) {
-                                        ((MainActivity) getActivity()).loadNewsFragment();
+                                    // Navigate to SignInActivity instead of FirstFragment
+                                    try {
+                                        Intent intent = new Intent(getActivity(), SignInActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                        // Finish the current activity
+                                        if (getActivity() != null) {
+                                            getActivity().finish();
+                                        }
+                                    } catch (Exception e) {
+                                        Log.e(TAG, "Error navigating to SignInActivity after account deletion", e);
+                                        // Fallback: try to navigate to MainActivity and then SignInActivity
+                                        if (getActivity() instanceof MainActivity) {
+                                            ((MainActivity) getActivity()).navigateToSignIn();
+                                        }
                                     }
                                 })
                                 .addOnFailureListener(deleteException -> {
@@ -234,6 +210,56 @@ private void showDeleteAccountDialog() {
         } catch (Exception e) {
             Log.e(TAG, "Error during account deletion process", e);
             Toast.makeText(getContext(), "Error during account deletion: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    // In UserInfoFragment.java - Updated showDeleteAccountDialog method
+
+    private void showDeleteAccountDialog() {
+        if (getContext() == null) return;
+
+        try {
+            // Create warning dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("⚠️ Delete Account")
+                    .setMessage("Are you sure you want to delete your account?\n\n" +
+                            "This action is PERMANENT and cannot be undone. All your data will be lost forever.\n\n" +
+                            "Please enter your current password to confirm:")
+                    .setCancelable(true);
+
+            // Create password input layout
+            LinearLayout dialogLayout = new LinearLayout(getContext());
+            dialogLayout.setOrientation(LinearLayout.VERTICAL);
+            dialogLayout.setPadding(50, 40, 50, 10);
+
+            EditText passwordEditText = new EditText(getContext());
+            passwordEditText.setHint("Enter your current password");
+            passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordEditText.setPadding(20, 20, 20, 20);
+
+            dialogLayout.addView(passwordEditText);
+
+            builder.setView(dialogLayout)
+                    .setPositiveButton("DELETE ACCOUNT", (dialog, which) -> {
+                        String password = passwordEditText.getText().toString();
+                        if (password.isEmpty()) {
+                            Toast.makeText(getContext(), "Password is required to delete account", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        // Show progress message
+                        Toast.makeText(getContext(), "Deleting account...", Toast.LENGTH_SHORT).show();
+
+                        deleteUserAccount(password);
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error showing delete account dialog", e);
+            Toast.makeText(getContext(), "Error showing delete dialog: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -615,6 +641,9 @@ private void showDeleteAccountDialog() {
     }
 
     // Add this new method to clear user preferences
+    // In UserInfoFragment.java - Updated clearUserPreferences method
+
+    // Add this method to clear user preferences (updated version)
     private void clearUserPreferences() {
         try {
             if (getContext() != null) {
@@ -622,7 +651,9 @@ private void showDeleteAccountDialog() {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear(); // Clear all saved user data
                 editor.apply();
-                Log.d(TAG, "User preferences cleared");
+                Log.d(TAG, "User preferences cleared successfully");
+            } else {
+                Log.w(TAG, "Context is null, cannot clear preferences");
             }
         } catch (Exception e) {
             Log.e(TAG, "Error clearing user preferences", e);
