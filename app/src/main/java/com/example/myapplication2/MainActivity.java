@@ -1,5 +1,8 @@
 package com.example.myapplication2;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -263,10 +266,26 @@ protected void onCreate(Bundle savedInstanceState) {
     private void handleLogout() {
         if (mAuth != null) {
             mAuth.signOut();
-            // Navigate to login activity or show login screen
-            // Intent intent = new Intent(this, LoginActivity.class);
-            // startActivity(intent);
-            // finish();
+
+            // Clear SharedPreferences
+            clearUserPreferences();
+
+            // Navigate to SignInActivity
+            Intent intent = new Intent(this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
+    }
+    // Add this new method to clear user preferences
+    private void clearUserPreferences() {
+        try {
+            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear(); // Clear all saved user data
+            editor.apply();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

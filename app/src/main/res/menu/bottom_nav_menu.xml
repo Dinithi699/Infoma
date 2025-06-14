@@ -11,9 +11,9 @@
     <item
         android:id="@+id/nav_technology"
         android:icon="@drawable/ic_technology"
-        android:title="Technology" />
+        android:title="Event" />
     <item
         android:id="@+id/nav_education"
         android:icon="@drawable/ic_education"
-        android:title="Education" />
+        android:title="Academic" />
 </menu>

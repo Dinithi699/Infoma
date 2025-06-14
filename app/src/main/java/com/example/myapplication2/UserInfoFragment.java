@@ -1,6 +1,8 @@
 package com.example.myapplication2;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -568,6 +571,8 @@ private void showDeleteAccountDialog() {
         }
     }
 
+    // In UserInfoFragment.java - Replace the showSignOutDialog method with this updated version
+
     private void showSignOutDialog() {
         if (getContext() == null) return;
 
@@ -580,11 +585,20 @@ private void showDeleteAccountDialog() {
                             // Handle sign out action
                             if (mAuth != null) {
                                 mAuth.signOut();
+
+                                // Clear SharedPreferences
+                                clearUserPreferences();
+
                                 Toast.makeText(getContext(), "Signed out successfully!", Toast.LENGTH_SHORT).show();
 
-                                // Navigate back to news fragment or login screen
-                                if (getActivity() instanceof MainActivity) {
-                                    ((MainActivity) getActivity()).loadNewsFragment();
+                                // Navigate to SignInActivity instead of FirstFragment
+                                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+
+                                // Finish the current activity
+                                if (getActivity() != null) {
+                                    getActivity().finish();
                                 }
                             }
                         } catch (Exception e) {
@@ -597,6 +611,21 @@ private void showDeleteAccountDialog() {
         } catch (Exception e) {
             Log.e(TAG, "Error showing sign out dialog", e);
             Toast.makeText(getContext(), "Error showing sign out dialog: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Add this new method to clear user preferences
+    private void clearUserPreferences() {
+        try {
+            if (getContext() != null) {
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear(); // Clear all saved user data
+                editor.apply();
+                Log.d(TAG, "User preferences cleared");
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error clearing user preferences", e);
         }
     }
 
