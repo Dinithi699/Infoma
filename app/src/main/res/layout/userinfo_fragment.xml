@@ -12,30 +12,27 @@
         android:orientation="vertical"
         android:padding="@dimen/fragment_padding">
 
-        <!-- Back Button -->
-        <LinearLayout
+        <!-- Page Title -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/spacing_medium">
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:text="User Information"
+            android:textAppearance="@style/TextAppearance.Headline"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center" />
 
-            <Button
-                android:id="@+id/back_button"
-                style="@style/Button.Secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                android:text="Back to Home"
-                android:textSize="14sp"
-                android:padding="12dp" />
-
-        </LinearLayout>
-
+        <!-- Main User Info Container with Light Blue Background -->
         <androidx.cardview.widget.CardView
             style="@style/CardView.News"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_large">
+            android:layout_marginBottom="@dimen/spacing_large"
+            app:cardBackgroundColor="@color/light_blue_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,6 +40,7 @@
                 android:orientation="vertical"
                 android:padding="@dimen/card_padding">
 
+                <!-- Profile Image -->
                 <ImageView
                     android:id="@+id/profile_image"
                     android:layout_width="134dp"
@@ -53,12 +51,15 @@
                     android:background="@drawable/profile_circle_bg"
                     android:contentDescription="Profile Image" />
 
+                <!-- Username Section -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/username_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle" />
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="@color/dark_blue_primary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/username_field"
@@ -66,14 +67,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_medium"
                     android:text="John Doe"
-                    android:textAppearance="@style/TextAppearance.Body" />
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textColor="@color/text_primary" />
 
+                <!-- Email Section -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/email_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle" />
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="@color/dark_blue_primary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/email_field"
@@ -81,14 +86,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_medium"
                     android:text="john.doe@example.com"
-                    android:textAppearance="@style/TextAppearance.Body" />
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textColor="@color/text_primary" />
 
+                <!-- Phone Section -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/phone_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle" />
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="@color/dark_blue_primary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/phone_field"
@@ -96,72 +105,100 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_medium"
                     android:text="0776789087"
-                    android:textAppearance="@style/TextAppearance.Body" />
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textColor="@color/text_primary" />
 
+                <!-- Location Section -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_tiny"
                     android:text="@string/location_label"
-                    android:textAppearance="@style/TextAppearance.Subtitle" />
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="@color/dark_blue_primary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_large"
                     android:text="Sri Lanka"
-                    android:textAppearance="@style/TextAppearance.Body" />
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textColor="@color/text_primary" />
 
+                <!-- Action Buttons -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <!-- Edit Info Button - Dark Blue -->
                     <Button
                         android:id="@+id/edit_info_button"
-                        style="@style/Button.Primary"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_small"
                         android:layout_weight="1"
-                        android:text="@string/edit_info" />
+                        android:text="@string/edit_info"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:backgroundTint="@color/dark_blue_primary"
+                        android:paddingVertical="12dp"
+                        android:textSize="14sp" />
 
+                    <!-- Sign Out Button - Light Blue -->
                     <Button
                         android:id="@+id/sign_out_button"
-                        style="@style/Button.Secondary"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_small"
                         android:layout_weight="1"
-                        android:text="@string/sign_out" />
+                        android:text="@string/sign_out"
+                        android:textColor="@color/dark_blue_primary"
+                        android:textStyle="bold"
+                        android:backgroundTint="@color/light_blue_secondary"
+                        android:paddingVertical="12dp"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
-                <!-- Delete Account Section -->
+                <!-- Divider -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_marginBottom="@dimen/spacing_medium"
-                    android:background="#E0E0E0" />
+                    android:background="@color/divider_gray" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_small"
-                    android:text="Danger Zone"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:textColor="#D32F2F" />
+                <!-- Danger Zone Section -->
 
+
+                <!-- Delete Account Button -->
                 <Button
                     android:id="@+id/delete_account_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Delete Account"
-                    android:textColor="#FFFFFF"
-                    android:backgroundTint="#D32F2F"
-                    android:layout_marginTop="@dimen/spacing_small" />
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/danger_red"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:paddingVertical="12dp"
+                    android:textSize="14sp" />
+
+                <!-- Back Button -->
+                <Button
+                    android:id="@+id/back_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Back to Home"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/dark_blue_primary"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:paddingVertical="12dp"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

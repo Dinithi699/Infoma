@@ -3,6 +3,9 @@ package com.example.myapplication2;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -216,46 +219,130 @@ public class UserInfoFragment extends Fragment {
 
 
     // In UserInfoFragment.java - Updated showDeleteAccountDialog method
-
     private void showDeleteAccountDialog() {
         if (getContext() == null) return;
 
         try {
-            // Create warning dialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("⚠️ Delete Account")
-                    .setMessage("Are you sure you want to delete your account?\n\n" +
-                            "This action is PERMANENT and cannot be undone. All your data will be lost forever.\n\n" +
-                            "Please enter your current password to confirm:")
-                    .setCancelable(true);
-
-            // Create password input layout
+            // Create custom layout
             LinearLayout dialogLayout = new LinearLayout(getContext());
             dialogLayout.setOrientation(LinearLayout.VERTICAL);
-            dialogLayout.setPadding(50, 40, 50, 10);
+            dialogLayout.setPadding(60, 50, 60, 40);
 
+            // Set the light blue background color
+            GradientDrawable dialogBackground = new GradientDrawable();
+            dialogBackground.setShape(GradientDrawable.RECTANGLE);
+            dialogBackground.setCornerRadius(30f); // Rounded corners
+            dialogBackground.setColor(Color.parseColor("#E3F2FD")); // Light blue background
+            dialogLayout.setBackground(dialogBackground);
+
+            // Create title
+            TextView titleView = new TextView(getContext());
+            titleView.setText("⚠️ DELETE ACCOUNT");
+            titleView.setTextColor(Color.parseColor("#D32F2F")); // Red for warning
+            titleView.setTextSize(16);
+            titleView.setTypeface(null, android.graphics.Typeface.BOLD);
+            titleView.setGravity(android.view.Gravity.CENTER);
+            titleView.setPadding(0, 0, 0, 20);
+
+            // Create message
+            TextView messageView = new TextView(getContext());
+            messageView.setText("This action is PERMANENT and cannot be undone. All your data will be lost forever.\n\nPlease enter your current password to confirm:");
+            messageView.setTextColor(Color.parseColor("#1976D2"));
+            messageView.setTextSize(14);
+            messageView.setGravity(android.view.Gravity.CENTER);
+            messageView.setPadding(0, 0, 0, 20);
+
+            // Create password input
             EditText passwordEditText = new EditText(getContext());
             passwordEditText.setHint("Enter your current password");
             passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordEditText.setPadding(20, 20, 20, 20);
+            passwordEditText.setPadding(30, 20, 30, 20);
 
+            // Style password input
+            GradientDrawable inputBackground = new GradientDrawable();
+            inputBackground.setShape(GradientDrawable.RECTANGLE);
+            inputBackground.setCornerRadius(25f);
+            inputBackground.setColor(Color.WHITE);
+            inputBackground.setStroke(2, Color.parseColor("#1976D2"));
+            passwordEditText.setBackground(inputBackground);
+            passwordEditText.setTextColor(Color.BLACK);
+            passwordEditText.setHintTextColor(Color.GRAY);
+
+            // Add views to layout
+            dialogLayout.addView(titleView);
+            dialogLayout.addView(messageView);
             dialogLayout.addView(passwordEditText);
 
-            builder.setView(dialogLayout)
-                    .setPositiveButton("DELETE ACCOUNT", (dialog, which) -> {
-                        String password = passwordEditText.getText().toString();
-                        if (password.isEmpty()) {
-                            Toast.makeText(getContext(), "Password is required to delete account", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+            // Create button layout
+            LinearLayout buttonLayout = new LinearLayout(getContext());
+            buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+            buttonLayout.setGravity(android.view.Gravity.CENTER);
+            buttonLayout.setPadding(0, 30, 0, 0);
 
-                        // Show progress message
-                        Toast.makeText(getContext(), "Deleting account...", Toast.LENGTH_SHORT).show();
+            // Delete button
+            Button deleteButton = new Button(getContext());
+            deleteButton.setText("DELETE");
+            deleteButton.setTextColor(Color.WHITE);
+            deleteButton.setTextSize(14);
+            deleteButton.setTypeface(null, android.graphics.Typeface.BOLD);
 
-                        deleteUserAccount(password);
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                    .show();
+            GradientDrawable deleteButtonDrawable = new GradientDrawable();
+            deleteButtonDrawable.setShape(GradientDrawable.RECTANGLE);
+            deleteButtonDrawable.setCornerRadius(50f);
+            deleteButtonDrawable.setColor(Color.parseColor("#D32F2F")); // Red
+            deleteButton.setBackground(deleteButtonDrawable);
+
+            // Cancel button
+            Button cancelButton = new Button(getContext());
+            cancelButton.setText("CANCEL");
+            cancelButton.setTextColor(Color.parseColor("#1976D2"));
+            cancelButton.setTextSize(14);
+            cancelButton.setTypeface(null, android.graphics.Typeface.BOLD);
+
+            GradientDrawable cancelButtonDrawable = new GradientDrawable();
+            cancelButtonDrawable.setShape(GradientDrawable.RECTANGLE);
+            cancelButtonDrawable.setCornerRadius(50f);
+            cancelButtonDrawable.setColor(Color.parseColor("#B3E5FC"));
+            cancelButton.setBackground(cancelButtonDrawable);
+
+            // Set button dimensions
+            LinearLayout.LayoutParams deleteParams = new LinearLayout.LayoutParams(200, 120);
+            deleteParams.setMargins(0, 0, 20, 0);
+            deleteButton.setLayoutParams(deleteParams);
+
+            LinearLayout.LayoutParams cancelParams = new LinearLayout.LayoutParams(200, 120);
+            cancelParams.setMargins(20, 0, 0, 0);
+            cancelButton.setLayoutParams(cancelParams);
+
+            buttonLayout.addView(deleteButton);
+            buttonLayout.addView(cancelButton);
+            dialogLayout.addView(buttonLayout);
+
+            // Create dialog
+            AlertDialog dialog = new AlertDialog.Builder(getContext())
+                    .setView(dialogLayout)
+                    .setCancelable(true)
+                    .create();
+
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+
+            // Set button listeners
+            deleteButton.setOnClickListener(v -> {
+                String password = passwordEditText.getText().toString();
+                if (password.isEmpty()) {
+                    Toast.makeText(getContext(), "Password is required to delete account", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(getContext(), "Deleting account...", Toast.LENGTH_SHORT).show();
+                deleteUserAccount(password);
+                dialog.dismiss();
+            });
+
+            cancelButton.setOnClickListener(v -> dialog.dismiss());
+
+            dialog.show();
 
         } catch (Exception e) {
             Log.e(TAG, "Error showing delete account dialog", e);
@@ -332,93 +419,212 @@ public class UserInfoFragment extends Fragment {
         if (getContext() == null) return;
 
         try {
-            // Create dialog layout programmatically
+            // Create main dialog layout
             LinearLayout dialogLayout = new LinearLayout(getContext());
             dialogLayout.setOrientation(LinearLayout.VERTICAL);
-            dialogLayout.setPadding(50, 40, 50, 10);
+            dialogLayout.setPadding(40, 30, 40, 30);
 
-            // Username input
+            // Set the light blue background color with rounded corners
+            GradientDrawable dialogBackground = new GradientDrawable();
+            dialogBackground.setShape(GradientDrawable.RECTANGLE);
+            dialogBackground.setCornerRadius(30f); // Rounded corners
+            dialogBackground.setColor(Color.parseColor("#E3F2FD")); // Light blue background
+            dialogLayout.setBackground(dialogBackground);
+
+            // Create title
+            TextView titleView = new TextView(getContext());
+            titleView.setText("EDIT USER INFORMATION");
+            titleView.setTextColor(Color.parseColor("#1976D2")); // Dark blue text
+            titleView.setTextSize(16);
+            titleView.setTypeface(null, android.graphics.Typeface.BOLD);
+            titleView.setGravity(android.view.Gravity.CENTER);
+            titleView.setPadding(0, 0, 0, 30);
+
+            // Username section
             TextView usernameLabel = new TextView(getContext());
             usernameLabel.setText("Username:");
-            usernameLabel.setTextSize(16);
-            usernameLabel.setPadding(0, 0, 0, 10);
+            usernameLabel.setTextColor(Color.parseColor("#1976D2"));
+            usernameLabel.setTextSize(14);
+            usernameLabel.setTypeface(null, android.graphics.Typeface.BOLD);
+            usernameLabel.setPadding(10, 0, 0, 8);
 
             EditText usernameEditText = new EditText(getContext());
             usernameEditText.setText(currentUsername);
             usernameEditText.setHint("Enter username");
-            usernameEditText.setPadding(20, 20, 20, 20);
+            usernameEditText.setPadding(25, 15, 25, 15);
+            usernameEditText.setTextColor(Color.BLACK);
+            usernameEditText.setHintTextColor(Color.GRAY);
 
-            // Email input
+            // Style username input with rounded corners and white background
+            GradientDrawable usernameInputBackground = new GradientDrawable();
+            usernameInputBackground.setShape(GradientDrawable.RECTANGLE);
+            usernameInputBackground.setCornerRadius(25f);
+            usernameInputBackground.setColor(Color.WHITE);
+            usernameInputBackground.setStroke(2, Color.parseColor("#1976D2"));
+            usernameEditText.setBackground(usernameInputBackground);
+
+            // Email section
             TextView emailLabel = new TextView(getContext());
             emailLabel.setText("Email:");
-            emailLabel.setTextSize(16);
-            emailLabel.setPadding(0, 20, 0, 10);
+            emailLabel.setTextColor(Color.parseColor("#1976D2"));
+            emailLabel.setTextSize(14);
+            emailLabel.setTypeface(null, android.graphics.Typeface.BOLD);
+            emailLabel.setPadding(10, 20, 0, 8);
 
             EditText emailEditText = new EditText(getContext());
             emailEditText.setText(currentEmail);
             emailEditText.setHint("Enter email address");
             emailEditText.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-            emailEditText.setPadding(20, 20, 20, 20);
+            emailEditText.setPadding(25, 15, 25, 15);
+            emailEditText.setTextColor(Color.BLACK);
+            emailEditText.setHintTextColor(Color.GRAY);
 
-            // Password input for re-authentication
+            // Style email input with rounded corners and white background
+            GradientDrawable emailInputBackground = new GradientDrawable();
+            emailInputBackground.setShape(GradientDrawable.RECTANGLE);
+            emailInputBackground.setCornerRadius(25f);
+            emailInputBackground.setColor(Color.WHITE);
+            emailInputBackground.setStroke(2, Color.parseColor("#1976D2"));
+            emailEditText.setBackground(emailInputBackground);
+
+            // Password section
             TextView passwordLabel = new TextView(getContext());
-            passwordLabel.setText("Current Password (required for email change):");
-            passwordLabel.setTextSize(16);
-            passwordLabel.setPadding(0, 20, 0, 10);
+            passwordLabel.setText("Current Password:");
+            passwordLabel.setTextColor(Color.parseColor("#1976D2"));
+            passwordLabel.setTextSize(14);
+            passwordLabel.setTypeface(null, android.graphics.Typeface.BOLD);
+            passwordLabel.setPadding(10, 20, 0, 5);
+
+            TextView passwordHint = new TextView(getContext());
+            passwordHint.setText("(Required for email changes)");
+            passwordHint.setTextColor(Color.parseColor("#666666"));
+            passwordHint.setTextSize(12);
+            passwordHint.setPadding(10, 0, 0, 8);
 
             EditText passwordEditText = new EditText(getContext());
             passwordEditText.setHint("Enter your current password");
             passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordEditText.setPadding(20, 20, 20, 20);
+            passwordEditText.setPadding(25, 15, 25, 15);
+            passwordEditText.setTextColor(Color.BLACK);
+            passwordEditText.setHintTextColor(Color.GRAY);
 
-            // Add views to layout
+            // Style password input with rounded corners and white background
+            GradientDrawable passwordInputBackground = new GradientDrawable();
+            passwordInputBackground.setShape(GradientDrawable.RECTANGLE);
+            passwordInputBackground.setCornerRadius(25f);
+            passwordInputBackground.setColor(Color.WHITE);
+            passwordInputBackground.setStroke(2, Color.parseColor("#1976D2"));
+            passwordEditText.setBackground(passwordInputBackground);
+
+            // Create button layout
+            LinearLayout buttonLayout = new LinearLayout(getContext());
+            buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+            buttonLayout.setGravity(android.view.Gravity.CENTER);
+            buttonLayout.setPadding(0, 30, 0, 0);
+
+            // Save button (like OK in your sign-out dialog)
+            Button saveButton = new Button(getContext());
+            saveButton.setText("SAVE");
+            saveButton.setTextColor(Color.WHITE);
+            saveButton.setTextSize(14);
+            saveButton.setTypeface(null, android.graphics.Typeface.BOLD);
+
+            // Style Save button with rounded corners and dark blue background
+            GradientDrawable saveButtonDrawable = new GradientDrawable();
+            saveButtonDrawable.setShape(GradientDrawable.RECTANGLE);
+            saveButtonDrawable.setCornerRadius(50f); // Rounded corners
+            saveButtonDrawable.setColor(Color.parseColor("#1976D2")); // Dark blue
+            saveButton.setBackground(saveButtonDrawable);
+
+            // Cancel button
+            Button cancelButton = new Button(getContext());
+            cancelButton.setText("CANCEL");
+            cancelButton.setTextColor(Color.parseColor("#1976D2"));
+            cancelButton.setTextSize(14);
+            cancelButton.setTypeface(null, android.graphics.Typeface.BOLD);
+
+            // Style Cancel button with rounded corners and light blue background
+            GradientDrawable cancelButtonDrawable = new GradientDrawable();
+            cancelButtonDrawable.setShape(GradientDrawable.RECTANGLE);
+            cancelButtonDrawable.setCornerRadius(50f); // Rounded corners
+            cancelButtonDrawable.setColor(Color.parseColor("#B3E5FC")); // Light blue
+            cancelButton.setBackground(cancelButtonDrawable);
+
+            // Set button dimensions and margins (same as your sign-out dialog)
+            LinearLayout.LayoutParams saveParams = new LinearLayout.LayoutParams(200, 120);
+            saveParams.setMargins(0, 0, 20, 0);
+            saveButton.setLayoutParams(saveParams);
+
+            LinearLayout.LayoutParams cancelParams = new LinearLayout.LayoutParams(200, 120);
+            cancelParams.setMargins(20, 0, 0, 0);
+            cancelButton.setLayoutParams(cancelParams);
+
+            // Add all views to dialog layout
+            dialogLayout.addView(titleView);
             dialogLayout.addView(usernameLabel);
             dialogLayout.addView(usernameEditText);
             dialogLayout.addView(emailLabel);
             dialogLayout.addView(emailEditText);
             dialogLayout.addView(passwordLabel);
+            dialogLayout.addView(passwordHint);
             dialogLayout.addView(passwordEditText);
 
-            // Create and show dialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Edit User Information")
+            // Add buttons to button layout
+            buttonLayout.addView(saveButton);
+            buttonLayout.addView(cancelButton);
+            dialogLayout.addView(buttonLayout);
+
+            // Create dialog
+            AlertDialog dialog = new AlertDialog.Builder(getContext())
                     .setView(dialogLayout)
-                    .setPositiveButton("Save", (dialog, which) -> {
-                        try {
-                            // Get new values
-                            String newUsername = usernameEditText.getText().toString().trim();
-                            String newEmail = emailEditText.getText().toString().trim();
-                            String password = passwordEditText.getText().toString();
+                    .setCancelable(true)
+                    .create();
 
-                            Log.d(TAG, "Attempting to update - Username: " + newUsername + ", Email: " + newEmail);
+            // Set dialog window background to be transparent (so our custom background shows)
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
 
-                            // Show progress message
-                            Toast.makeText(getContext(), "Updating user information...", Toast.LENGTH_SHORT).show();
+            // Set button click listeners
+            saveButton.setOnClickListener(v -> {
+                try {
+                    // Get new values
+                    String newUsername = usernameEditText.getText().toString().trim();
+                    String newEmail = emailEditText.getText().toString().trim();
+                    String password = passwordEditText.getText().toString();
 
-                            // Validate inputs
-                            if (validateUsername(newUsername) && validateEmail(newEmail)) {
-                                // Check if email changed
-                                if (!newEmail.equals(currentEmail)) {
-                                    Log.d(TAG, "Email changed from " + currentEmail + " to " + newEmail);
-                                    // Email changed, need re-authentication
-                                    if (password.isEmpty()) {
-                                        Toast.makeText(getContext(), "Password is required to change email", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-                                    updateUserInfoWithReauth(newUsername, newEmail, password);
-                                } else {
-                                    Log.d(TAG, "Only username changed");
-                                    // Only username changed
-                                    updateDisplayNameInFirebase(newUsername);
-                                }
+                    Log.d(TAG, "Attempting to update - Username: " + newUsername + ", Email: " + newEmail);
+
+                    // Show progress message
+                    Toast.makeText(getContext(), "Updating user information...", Toast.LENGTH_SHORT).show();
+
+                    // Validate inputs
+                    if (validateUsername(newUsername) && validateEmail(newEmail)) {
+                        // Check if email changed
+                        if (!newEmail.equals(currentEmail)) {
+                            Log.d(TAG, "Email changed from " + currentEmail + " to " + newEmail);
+                            // Email changed, need re-authentication
+                            if (password.isEmpty()) {
+                                Toast.makeText(getContext(), "Password is required to change email", Toast.LENGTH_SHORT).show();
+                                return;
                             }
-                        } catch (Exception e) {
-                            Log.e(TAG, "Error saving changes", e);
-                            Toast.makeText(getContext(), "Error saving changes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            updateUserInfoWithReauth(newUsername, newEmail, password);
+                        } else {
+                            Log.d(TAG, "Only username changed");
+                            // Only username changed
+                            updateDisplayNameInFirebase(newUsername);
                         }
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                    .show();
+                    }
+                    dialog.dismiss();
+                } catch (Exception e) {
+                    Log.e(TAG, "Error saving changes", e);
+                    Toast.makeText(getContext(), "Error saving changes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            cancelButton.setOnClickListener(v -> dialog.dismiss());
+
+            dialog.show();
 
         } catch (Exception e) {
             Log.e(TAG, "Error opening edit dialog", e);
@@ -604,36 +810,121 @@ public class UserInfoFragment extends Fragment {
 
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Sign Out")
-                    .setMessage("Are you sure you want to sign out?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        try {
-                            // Handle sign out action
-                            if (mAuth != null) {
-                                mAuth.signOut();
 
-                                // Clear SharedPreferences
-                                clearUserPreferences();
+            // Create custom layout
+            LinearLayout dialogLayout = new LinearLayout(getContext());
+            dialogLayout.setOrientation(LinearLayout.VERTICAL);
+            dialogLayout.setPadding(60, 50, 60, 40);
 
-                                Toast.makeText(getContext(), "Signed out successfully!", Toast.LENGTH_SHORT).show();
+            // Set the light blue background color like in your image
+            dialogLayout.setBackgroundColor(Color.parseColor("#E3F2FD")); // Light blue background
 
-                                // Navigate to SignInActivity instead of FirstFragment
-                                Intent intent = new Intent(getActivity(), SignInActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+            // Create and style the title
+            TextView titleView = new TextView(getContext());
+            titleView.setText("DO YOU WANT TO SIGN OUT ?");
+            titleView.setTextColor(Color.parseColor("#1976D2")); // Dark blue text
+            titleView.setTextSize(16);
+            titleView.setTypeface(null, android.graphics.Typeface.BOLD);
+            titleView.setGravity(android.view.Gravity.CENTER);
+            titleView.setPadding(0, 0, 0, 150);
 
-                                // Finish the current activity
-                                if (getActivity() != null) {
-                                    getActivity().finish();
-                                }
-                            }
-                        } catch (Exception e) {
-                            Log.e(TAG, "Error signing out", e);
-                            Toast.makeText(getContext(), "Error signing out: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            dialogLayout.addView(titleView);
+
+            // Create button layout
+            LinearLayout buttonLayout = new LinearLayout(getContext());
+            buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+            buttonLayout.setGravity(android.view.Gravity.CENTER);
+
+            // Create OK button (like in your image)
+            Button okButton = new Button(getContext());
+            okButton.setText("YES");
+            okButton.setTextColor(Color.WHITE);
+            okButton.setTextSize(14);
+            okButton.setTypeface(null, android.graphics.Typeface.BOLD);
+
+            // Style OK button with rounded corners and blue background
+            GradientDrawable okButtonDrawable = new GradientDrawable();
+            okButtonDrawable.setShape(GradientDrawable.RECTANGLE);
+            okButtonDrawable.setCornerRadius(50f); // Rounded corners
+            okButtonDrawable.setColor(Color.parseColor("#1976D2")); // Dark blue
+            okButton.setBackground(okButtonDrawable);
+
+            // Create CANCEL button
+            Button cancelButton = new Button(getContext());
+            cancelButton.setText("NO");
+            cancelButton.setTextColor(Color.parseColor("#1976D2"));
+            cancelButton.setTextSize(14);
+            cancelButton.setTypeface(null, android.graphics.Typeface.BOLD);
+
+            // Style CANCEL button with rounded corners and light blue background
+            GradientDrawable cancelButtonDrawable = new GradientDrawable();
+            cancelButtonDrawable.setShape(GradientDrawable.RECTANGLE);
+            cancelButtonDrawable.setCornerRadius(50f); // Rounded corners
+            cancelButtonDrawable.setColor(Color.parseColor("#B3E5FC")); // Light blue
+            cancelButton.setBackground(cancelButtonDrawable);
+
+            // Set button dimensions and margins
+            LinearLayout.LayoutParams okParams = new LinearLayout.LayoutParams(200, 120);
+            okParams.setMargins(0, 0, 20, 0);
+            okButton.setLayoutParams(okParams);
+
+            LinearLayout.LayoutParams cancelParams = new LinearLayout.LayoutParams(200, 120);
+            cancelParams.setMargins(20, 0, 0, 0);
+            cancelButton.setLayoutParams(cancelParams);
+
+            // Add buttons to button layout
+            buttonLayout.addView(okButton);
+            buttonLayout.addView(cancelButton);
+
+            // Add button layout to main dialog layout
+            dialogLayout.addView(buttonLayout);
+
+            // Create dialog
+            AlertDialog dialog = new AlertDialog.Builder(getContext())
+                    .setView(dialogLayout)
+                    .setCancelable(true)
+                    .create();
+
+            // Set dialog window background to be rounded
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                // Create rounded background for the entire dialog
+                GradientDrawable dialogBackground = new GradientDrawable();
+                dialogBackground.setShape(GradientDrawable.RECTANGLE);
+                dialogBackground.setCornerRadius(30f); // Rounded corners for dialog
+                dialogBackground.setColor(Color.parseColor("#E3F2FD"));
+                dialogLayout.setBackground(dialogBackground);
+            }
+
+            // Set button click listeners
+            okButton.setOnClickListener(v -> {
+                try {
+                    // Handle sign out action
+                    if (mAuth != null) {
+                        mAuth.signOut();
+                        clearUserPreferences();
+                        Toast.makeText(getContext(), "Signed out successfully!", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getActivity(), SignInActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                        if (getActivity() != null) {
+                            getActivity().finish();
                         }
-                    })
-                    .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
-                    .show();
+                    }
+                    dialog.dismiss();
+                } catch (Exception e) {
+                    Log.e(TAG, "Error signing out", e);
+                    Toast.makeText(getContext(), "Error signing out: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            cancelButton.setOnClickListener(v -> dialog.dismiss());
+
+            dialog.show();
+
         } catch (Exception e) {
             Log.e(TAG, "Error showing sign out dialog", e);
             Toast.makeText(getContext(), "Error showing sign out dialog: " + e.getMessage(), Toast.LENGTH_SHORT).show();

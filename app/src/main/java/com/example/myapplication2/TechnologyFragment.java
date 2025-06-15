@@ -127,7 +127,7 @@ public class TechnologyFragment extends Fragment implements NewsAdapter.OnNewsIt
         technology.add(new NewsItem(
                 "AI Revolution in 2025",
                 "Artificial Intelligence continues to transform industries with breakthrough innovations in machine learning and neural networks. Companies are leveraging AI to automate processes and enhance user experiences.",
-                "Technology",
+                "Event",
                 "30 minutes ago",
                 R.drawable.tech1
         ));
@@ -135,7 +135,7 @@ public class TechnologyFragment extends Fragment implements NewsAdapter.OnNewsIt
         technology.add(new NewsItem(
                 "5G Network Expansion",
                 "Major telecommunications companies expand 5G coverage to rural areas worldwide, bringing high-speed connectivity to previously underserved regions.",
-                "Technology",
+                "Event",
                 "2 hours ago",
                 R.drawable.tech2
         ));
@@ -143,7 +143,7 @@ public class TechnologyFragment extends Fragment implements NewsAdapter.OnNewsIt
         technology.add(new NewsItem(
                 "University of Colombo Signs MOU with JICA for the JICA Chair Program 2024/25",
                 "On june 12th, 2025, the University of Colombo and the Japan International Cooperation Agency (JICA) formalized a partnership by signing a Memorandum of Understanding (MOU) for the JICA Chair Program 2024/25. The signing ceremony took place at College House.",
-                "Technology",
+                "Event",
                 "4 hours ago",
                 R.drawable.tech3
         ));
@@ -151,7 +151,7 @@ public class TechnologyFragment extends Fragment implements NewsAdapter.OnNewsIt
         technology.add(new NewsItem(
                 "Solar Village Project",
                 "The Department of Instrumentation and Automation Technology (IAT) of the Faculty of Technology, together with a UK-based charity organization, Hela Sarana, and Sri Lanka Association for the Advancement of Science (SLAAS)/ Section E1, successfully completed a Solar Village project at Tissapura Kanishta Vidyalaya",
-                "Technology",
+                "Event",
                 "6 hours ago",
                 R.drawable.tech6
         ));
@@ -159,7 +159,7 @@ public class TechnologyFragment extends Fragment implements NewsAdapter.OnNewsIt
         technology.add(new NewsItem(
                 "Cybersecurity Updates",
                 "Latest security protocols implemented to protect against emerging cyber threats as organizations strengthen their digital defenses.",
-                "Technology",
+                "Event",
                 "8 hours ago",
                 R.drawable.tech4
         ));
@@ -167,7 +167,7 @@ public class TechnologyFragment extends Fragment implements NewsAdapter.OnNewsIt
         technology.add(new NewsItem(
                 "Cloud Computing Advances",
                 "New cloud infrastructure solutions offer improved scalability and performance for businesses of all sizes, enabling digital transformation initiatives.",
-                "Technology",
+                "Event",
                 "12 hours ago",
                 R.drawable.tech5
         ));

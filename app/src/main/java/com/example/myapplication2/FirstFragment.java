@@ -130,7 +130,7 @@ public class FirstFragment extends Fragment implements NewsAdapter.OnNewsItemCli
         news.add(new NewsItem(
                 "Breaking: Technology Advances in 2025",
                 "Latest developments in artificial intelligence and machine learning continue to reshape industries worldwide. New breakthroughs in quantum computing and neural networks are opening unprecedented possibilities for innovation.",
-                "Technology",
+                "Academic",
                 "2 hours ago",
                 R.drawable.research5
         ));
@@ -138,7 +138,7 @@ public class FirstFragment extends Fragment implements NewsAdapter.OnNewsItemCli
         news.add(new NewsItem(
                 "New Educational Programs Launch",
                 "Universities introduce innovative online courses and hybrid learning models for students. These programs combine traditional classroom instruction with cutting-edge digital platforms.",
-                "Education",
+                "Academic",
                 "3 hours ago",
                 R.drawable.research3
         ));
@@ -154,7 +154,7 @@ public class FirstFragment extends Fragment implements NewsAdapter.OnNewsItemCli
         news.add(new NewsItem(
                 "Technology Updates",
                 "Highlights of Memorandum of Understanding Signing Ceremony (UoC and RCS2 Technologies (Pvt) Ltd)",
-                "Education",
+                "Event",
                 "8 hours ago",
                 R.drawable.research2
         ));
@@ -162,7 +162,7 @@ public class FirstFragment extends Fragment implements NewsAdapter.OnNewsItemCli
         news.add(new NewsItem(
                 "ANNUAL RESEARCH SYMPOSIUM ",
                 "ANNUAL RESEARCH SYMPOSIUM - 2025",
-                "Education",
+                "Event",
                 "12 hours ago",
                 R.drawable.research
         ));
@@ -170,7 +170,7 @@ public class FirstFragment extends Fragment implements NewsAdapter.OnNewsItemCli
         news.add(new NewsItem(
                 "Healthcare Innovation",
                 "Medical researchers announce breakthrough treatments for various conditions. Advanced therapies and precision medicine are revolutionizing patient care worldwide.",
-                "Technology",
+                "Academic",
                 "1 day ago",
                 R.drawable.research4
         ));

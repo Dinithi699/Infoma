@@ -133,7 +133,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
         education.add(new NewsItem(
                 "General Convocation 2025",
                 "The University of Colombo conducted its General Convocation 2024 (Phase I) at the Bandaranaike Memorial International Conference Hall on 2nd june 2025 under the patronage of the Vice Chancellor, Senior Professor (Chair) H D Karunaratne, Deans of the Faculty of Management and Finance, Technology and Medicine, Registrar, Bursar, Librarian, Academic Staff, Administrative and Finance Officers.",
-                "Education",
+                "Academic",
                 "1 hour ago",
                 R.drawable.edu1
         ));
@@ -141,7 +141,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
         education.add(new NewsItem(
                 "Beach Cleanup and Basic Water Safety Project- \"සිදුතෙර පියසටහන්\"",
                 "In a commendable effort on 6th of june, 2024, members of the Environmental Technology Society, Faculty of Technology, University of Colombo united for a crucial cause at Panadura Beach.",
-                "Education",
+                "Academic",
                 "3 hours ago",
                 R.drawable.edu2
         ));
@@ -149,7 +149,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
         education.add(new NewsItem(
                 "University Scholarship Programs",
                 "Major universities announce increased scholarship opportunities for deserving students, focusing on merit-based and need-based financial assistance.",
-                "Education",
+                "Academic",
                 "5 hours ago",
                 R.drawable.edu3
         ));
@@ -157,7 +157,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
         education.add(new NewsItem(
                 "Intensive Course",
                 "The Faculty of Technology at University of Colombo introduces an accelerated learning program designed to bridge the gap between school and university education. This intensive course, running from July 17th to 28th via Zoom platform, focuses on enhancing academic readiness, building strong foundations, and developing critical thinking skills to ensure student success in university life.",
-                "Education",
+                "Academic",
                 "7 hours ago",
                 R.drawable.edu4
         ));
@@ -166,7 +166,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
                 "Registrations are open for the certificate courses",
                 "Registrations are open for you to enroll in the certificate courses conducted by the Department of Instrumentation and Automation Technology, University of Colombo." +
                         "Registration deadline: 24th March 2023",
-                "Education",
+                "Academic",
                 "9 hours ago",
                 R.drawable.edu5
         ));
@@ -174,7 +174,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
         education.add(new NewsItem(
                 "Research Collaboration Network",
                 "Universities establish new research collaboration networks to foster innovation and knowledge sharing across institutions.",
-                "Education",
+                "Academic",
                 "12 hours ago",
                 R.drawable.edu6
         ));
@@ -182,7 +182,7 @@ public class EducationFragment extends Fragment implements NewsAdapter.OnNewsIte
         education.add(new NewsItem(
                 "ART FOR EARTH",
                 "The University of Colombo's Faculty of Arts introduces an innovative 'Art for Earth' initiative that combines creative expression with environmental conservation awareness.",
-                "Education",
+                "Academic",
                 "1 day ago",
                 R.drawable.edu7
         ));

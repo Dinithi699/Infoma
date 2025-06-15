@@ -132,4 +132,9 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="TextAppearance.Headline" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
 </resources>

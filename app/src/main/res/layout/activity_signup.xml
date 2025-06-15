@@ -6,16 +6,16 @@
     android:padding="32dp"
     android:background="@color/white">
 
-
     <ImageView
-        android:layout_width="215dp"
-        android:layout_height="125dp"
+        android:layout_width="208dp"
+        android:layout_height="122dp"
         android:layout_gravity="center"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="32dp"
         android:padding="16dp"
         android:src="@drawable/news_head_logo" />
 
+    <!-- Username Field -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,8 +32,10 @@
         android:background="@drawable/edittext_background"
         android:padding="12dp"
         android:textSize="16sp"
-        android:layout_marginBottom="16dp" />
+        android:inputType="text"
+        android:layout_marginBottom="24dp" />
 
+    <!-- Email Field -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,14 +47,15 @@
 
     <EditText
         android:id="@+id/et_email"
+        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/edittext_background"
         android:padding="12dp"
         android:textSize="16sp"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp" />
 
+    <!-- Password Field -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,16 +65,37 @@
         android:layout_marginBottom="8dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_password_signup"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/edittext_background"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp">
 
+        <EditText
+            android:id="@+id/et_password_signup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:paddingEnd="48dp"
+            android:textSize="16sp"
+            android:inputType="textPassword" />
+
+        <ImageView
+            android:id="@+id/iv_toggle_password"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_eye_off"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Toggle password visibility" />
+
+    </RelativeLayout>
+
+    <!-- Confirm Password Field -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,15 +105,35 @@
         android:layout_marginBottom="8dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_confirm_password"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/edittext_background"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="32dp">
+
+        <EditText
+            android:id="@+id/et_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:paddingEnd="48dp"
+            android:textSize="16sp"
+            android:inputType="textPassword" />
+
+        <ImageView
+            android:id="@+id/iv_toggle_confirm_password"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_eye_off"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Toggle confirm password visibility" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_signup"
@@ -106,10 +150,10 @@
         android:id="@+id/tv_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="HAVE AN ACCOUNT? SIGN IN"
-        android:textColor="@color/teal_700"
+        android:text="ALREADY HAVE AN ACCOUNT? SIGN IN"
         android:textSize="12sp"
+        android:textColor="@color/teal_700"
+        android:layout_gravity="center"
         android:textStyle="bold" />
 
 </LinearLayout>

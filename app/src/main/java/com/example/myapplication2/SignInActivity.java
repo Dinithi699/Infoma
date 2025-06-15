@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +23,10 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView tvSignup;
     private ProgressBar progressBar;
+    private ImageView ivTogglePassword;
 
     private FirebaseAuth mAuth;
+    private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,8 @@ public class SignInActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         tvSignup = findViewById(R.id.tv_signup);
-        progressBar = findViewById(R.id.progress_bar); // Add this to your layout
+        progressBar = findViewById(R.id.progress_bar);
+        ivTogglePassword = findViewById(R.id.iv_toggle_password);
     }
 
     private void setupClickListeners() {
@@ -63,6 +68,31 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
+
+        // Password visibility toggle
+        ivTogglePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePasswordVisibility();
+            }
+        });
+    }
+
+    private void togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            // Hide password
+            etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            ivTogglePassword.setImageResource(R.drawable.ic_eye_off);
+            isPasswordVisible = false;
+        } else {
+            // Show password
+            etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            ivTogglePassword.setImageResource(R.drawable.ic_eye_on);
+            isPasswordVisible = true;
+        }
+
+        // Move cursor to end of text
+        etPassword.setSelection(etPassword.getText().length());
     }
 
     private void performLogin() {
@@ -126,20 +156,22 @@ public class SignInActivity extends AppCompatActivity {
             btnLogin.setEnabled(false);
             btnLogin.setText("SIGNING IN...");
 
-            // Optionally disable input fields
+            // Optionally disable input fields and toggle
             etEmail.setEnabled(false);
             etPassword.setEnabled(false);
             tvSignup.setEnabled(false);
+            ivTogglePassword.setEnabled(false);
         } else {
             // Hide progress bar and enable button
             progressBar.setVisibility(View.GONE);
             btnLogin.setEnabled(true);
             btnLogin.setText("LOGIN");
 
-            // Re-enable input fields
+            // Re-enable input fields and toggle
             etEmail.setEnabled(true);
             etPassword.setEnabled(true);
             tvSignup.setEnabled(true);
+            ivTogglePassword.setEnabled(true);
         }
     }
 }
